@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   Order.init(
     {
       userId: {
-        type : DataTypes.STRING,
+        type : DataTypes.INTEGER,
         allowNull : false,
         validate : {
           notNull : {

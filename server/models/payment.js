@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   Payment.init(
     {
       orderId: {
-        type : DataTypes.STRING,
+        type : DataTypes.INTEGER,
         allowNull: false,
         validate : {
           notNull: {
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       midtransOrderId: {
-        type : DataTypes.STRING,
+        type : DataTypes.INTEGER,
         allowNull: false,
         validate : {
           notNull: {

@@ -10,10 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       orderId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       midtransOrderId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       transactionStatus: {
         type: Sequelize.STRING,
