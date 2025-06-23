@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+const { genSalt } = require("../helpers/bcrypt");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,16 +10,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Address, { foreignKey: "userId" });
+      User.hasMany(models.Cart, { foreignKey: "userId" });
+      User.hasMany(models.Order, { foreignKey: "userId" });
+      User.hasMany(models.Product, { foreignKey: "userId" });
     }
   }
   User.init(
     {
       username: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
         validate: {
           notEmpty: {
-            msg: "username is requried",
+            msg: "username is required",
           },
           notNull: {
             msg: "username is required",
@@ -27,10 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       email: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
         validate: {
           notEmpty: {
-            msg: "email is requried",
+            msg: "email is required",
           },
           notNull: {
             msg: "email is required",
@@ -42,10 +49,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notEmpty: {
-            msg: "email is requried",
+            msg: "password is required",
           },
           notNull: {
-            msg: "email is required",
+            msg: "password is required",
           },
         },
       },
@@ -55,18 +62,34 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: "user",
         validate: {
           notEmpty: {
-            msg: "role is requried",
+            msg: "role is required",
           },
           notNull: {
             msg: "role is required",
           },
         },
       },
+      imgUrl: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      phoneNumber: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "phone number is required",
+          },
+          notNull: {
+            msg: "phone number is required",
+          },
+        },
+      },
     },
     {
       hooks: {
-        beforeCreate: (user) => {
-          user.password = require("bcrypt").hashSync(user.password, 10);
+        beforeCreate(instance, option) {
+          instance.password = genSalt(instance.password);
         },
       },
       sequelize,
