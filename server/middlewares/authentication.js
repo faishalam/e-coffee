@@ -13,7 +13,7 @@ async function authentication(req, res, next) {
     const payload = verifyToken(token);
 
     const user = await User.findByPk(payload.id);
-    if (!user) return res.status(401).json({ message: "Invalid tokssn" });
+    if (!user) return res.status(401).json({ message: "Invalid token" });
 
     req.user = {
       id: user.id,

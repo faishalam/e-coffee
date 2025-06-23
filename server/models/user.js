@@ -91,6 +91,9 @@ module.exports = (sequelize, DataTypes) => {
         beforeCreate(instance, option) {
           instance.password = genSalt(instance.password);
         },
+        beforeUpdate(instance, option) {
+          instance.password = genSalt(instance.password);
+        },
       },
       sequelize,
       modelName: "User",
