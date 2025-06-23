@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Cart.init(
     {
       userId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notEmpty: {

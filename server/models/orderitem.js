@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   OrderItem.init(
     {
       orderId: {
-        type : DataTypes.STRING,
+        type : DataTypes.INTEGER,
         allowNull: false,
         validate : {
           notNull : {
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       productId: {
-        type : DataTypes.STRING,
+        type : DataTypes.INTEGER,
         allowNull: false,
         validate : {
           notNull : {

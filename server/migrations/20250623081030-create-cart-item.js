@@ -10,10 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       productId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       cartId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
