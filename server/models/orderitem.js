@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class OrderItem extends Model {
     /**
@@ -11,16 +9,65 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      OrderItem.belongsTo(models.Order, { foreignKey: "orderId" });
+      OrderItem.belongsTo(models.Product, { foreignKey: "productId" });
     }
   }
-  OrderItem.init({
-    orderId: DataTypes.STRING,
-    productId: DataTypes.STRING,
-    quantity: DataTypes.INTEGER,
-    price: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'OrderItem',
-  });
+  OrderItem.init(
+    {
+      orderId: {
+        type : DataTypes.STRING,
+        allowNull: false,
+        validate : {
+          notNull : {
+            msg : "order id is required"
+          },
+          notEmpty : {
+            msg: "order id is required"
+          }
+        }
+      },
+      productId: {
+        type : DataTypes.STRING,
+        allowNull: false,
+        validate : {
+          notNull : {
+            msg : "product id is required"
+          },
+          notEmpty : {
+            msg: "product id is required"
+          }
+        }
+      },
+      quantity: {
+        type : DataTypes.INTEGER,
+        allowNull: false,
+        validate : {
+          notNull : {
+            msg : "quantity is required"
+          },
+          notEmpty : {
+            msg: "quantity is required"
+          }
+        }
+      },
+      price: {
+        type : DataTypes.INTEGER,
+        allowNull: false,
+        validate : {
+          notNull : {
+            msg : "price is required"
+          },
+          notEmpty : {
+            msg: "price is required"
+          }
+        }
+      },
+    },
+    {
+      sequelize,
+      modelName: "OrderItem",
+    }
+  );
   return OrderItem;
 };
