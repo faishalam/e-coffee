@@ -28,6 +28,18 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      productType: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "product type is required",
+          },
+          notEmpty: {
+            msg: "product type is required",
+          },
+        },
+      },
       productName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -49,6 +61,18 @@ module.exports = (sequelize, DataTypes) => {
           },
           notEmpty: {
             msg: "description is required",
+          },
+        },
+      },
+      category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "category is required",
+          },
+          notEmpty: {
+            msg: "category is required",
           },
         },
       },
@@ -76,18 +100,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      unit: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "unit is required",
-          },
-          notEmpty: {
-            msg: "unit is required",
-          },
-        },
-      },
+      unit: DataTypes.STRING,
     },
     {
       sequelize,
