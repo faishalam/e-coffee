@@ -1,4 +1,4 @@
-const { Order, CartItem, OrderItem } = require("../models");
+const { Order, CartItem, OrderItem, Cart } = require("../models");
 
 class OrderController {
   static async createOrder(req, res) {
@@ -6,7 +6,7 @@ class OrderController {
       const { id: userId } = req.user;
       const { address } = req.body;
 
-      const cart = await findOne({
+      const cart = await Cart.findOne({
         where: { userId },
         include: {
           model: CartItem,
