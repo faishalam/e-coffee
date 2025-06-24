@@ -28,7 +28,10 @@ class AddressController {
   static async getUserAddress(req, res) {
     try {
       const { id } = req.user;
-      const addresses = await Address.findAll({ where: { userId: id } });
+      const addresses = await Address.findAll({
+        where: { userId: id },
+        order: [["createdAt", "DESC"]],
+      });
       res.status(200).json(addresses);
     } catch (error) {
       if (error.name === "SequelizeValidationError") {
