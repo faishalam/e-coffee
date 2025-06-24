@@ -1,7 +1,7 @@
 const express = require("express");
 const userRouter = require("./userRouter");
 const addressRouter = require("./addressRouter");
-const productRouter = require("./productController");
+const productRouter = require("./productRouter");
 const orderRouter = require("./orderRouter");
 
 const router = express.Router();
