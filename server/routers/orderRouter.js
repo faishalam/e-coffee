@@ -5,8 +5,11 @@ const OrderController = require("../controllers/orderController");
 
 orderRouter.post("/order", authentication, OrderController.createOrder);
 orderRouter.get("/order", authentication, OrderController.getOrders);
-orderRouter.get("/order/:id", authentication, OrderController.getOrdersById);
-orderRouter.put("/order/:id", authentication, OrderController.updateStatusOrder);
-orderRouter.delete("/order/:id", authentication, OrderController.deleteOrder);
+orderRouter.get("/order/:id", authentication, OrderController.getOrderById);
+orderRouter.put(
+  "/order/:id",
+  authentication,
+  OrderController.updateOrderStatus
+);
 
 module.exports = orderRouter;
